@@ -1,0 +1,14 @@
+{% extends 'main.html' %}    
+    {% block content%}
+        <h1>Single Project {{project}}</h1>
+        <p>Project title: {{project.title}}</p>
+        <p>Project tags: </p>
+        <hr>
+        {% for tag in tags %}
+            <span style="border:1px solid gray">{{tag}}</span>
+        {% endfor %}
+        <hr>
+        <p>Project vote: {{project.vote_total}}</p>
+        <p>Project created at: {{project.created}}</p>
+    {% endblock content%}
+    

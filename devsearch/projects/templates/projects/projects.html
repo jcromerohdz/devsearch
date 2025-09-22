@@ -1,0 +1,17 @@
+{% extends 'main.html' %} 
+    
+    {% block content %}
+        <h1>Projects Page from view {{msg}}</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, ratione quo, nemo eveniet, vitae quis sequi corporis perspiciatis id quasi temporibus voluptatem dignissimos quaerat hic!</p>
+        <hr>
+        <h1>Projects</h1>
+        <ul>
+        {% for project in projects %}
+            <li><a href="{% url 'project' project.id %}">{{project.title}}</a></li>
+            <div>
+                <li><a href="{% url 'update_project' project.id %}">Edit</a></li>
+                <li><a href="{% url 'delete_project' project.id %}">Delete</a></li>
+            </div>
+        {% endfor %}
+        </ul>
+    {% endblock content %}
