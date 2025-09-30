@@ -1,16 +1,25 @@
 // Invoke Functions Call on Document Loaded
 document.addEventListener('DOMContentLoaded', function () {
-  hljs.highlightAll();
+  // hljs.highlightAll();
+  let alertWrapper = document.querySelector('.alert')
+  let alertClose = document.querySelector('.alert__close')
+
+  if (alertWrapper){
+    alertClose.addEventListener('click', function(){
+      alertWrapper.style.display = "none"
+    })
+  }
+
+  // setTimeout(() => {
+  //   if (alertWrapper) {
+  //     console.log(alertClose)
+  //     alertWrapper.style.display = "none"
+  //   }
+  // }, 9000); // 300
+
+
 });
 
 
-let alertWrapper = document.querySelector('.alert')
-let alertClose = document.querySelector('.alert__close')
 
-setTimeout(() => {
-    if (alertWrapper) {
-      console.log(alertClose)
-      alertWrapper.style.display = "none"
-    }
-    }, 3000); // 300
 

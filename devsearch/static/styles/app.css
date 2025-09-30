@@ -1,5 +1,5 @@
 :root {
-  --color-sub: #2d2d39;
+  --color-sub: #0e0e1f;
 }
 
 .btn--sub {
@@ -25,6 +25,30 @@ img {
   margin: 0 auto;
 }
 
+/*=======================
+  Ulitilities Section
+========================*/
+.center{
+  display: flex; 
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center
+}
+.mt-1 {
+  margin-top: .9rem;
+}
+.mt-2 {
+  margin-top: 1.2rem;
+}
+.mt-3 {
+  margin-top: 1.5rem;
+}
+.mt-4 {
+  margin-top: 1.8rem;
+}
+.mt-5 {
+  margin-top: 2.1rem;
+}
 /*=======================
   Header Section
 ========================*/
@@ -641,7 +665,7 @@ img {
 .auth {
   width: 100%;
   position: relative;
-  z-index: 1;
+  /* z-index: 1; */
   background: transparent;
   height: 99vh;
   display: flex;
