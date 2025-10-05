@@ -9,19 +9,20 @@
       </div>
 
       <div class="hero-section__search">
-        <form class="form" action="#" method="get">
+        <form id="searchForm" action="{% url 'projects' %}" method="GET">
           <div class="form__field">
             <label for="formInput#search">Search By Projects </label>
             <input
               class="input input--text"
               id="formInput#search"
               type="text"
-              name="text"
+              name="search_query"
               placeholder="Search by Project Title"
+              value="{{search_query}}"
             />
           </div>
 
-          <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+          <input class="btn btn--sub btn--lg" type="submit" value="Search"/>
         </form>
       </div>
     </div>
@@ -70,6 +71,8 @@
       </div>
     </div>
   </section>
+
+  {% include 'pagination.html' with queryset=projects custom_range=custom_range %}
 
 </main>
 

@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Profile, Skill
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm
+from .utils import search_profiles
+
 
 # Create your views here.
 def login_user(request):
@@ -68,9 +71,37 @@ def register_user(request):
 
 
 def profiles(request):
-    profiles = Profile.objects.all()
+    profiles, search_query = search_profiles(request)
+
+    page = request.GET.get('page')
+    results = 10
+    paginator = Paginator(profiles, results)
+
+    try:
+        profiles = paginator.page(page)
+    except PageNotAnInteger:
+        page = 1
+        profiles = paginator.page(page)
+    except EmptyPage:
+        page = paginator.num_pages
+        profiles = paginator.page(page)
+
+    left_index = (int(page) - 4)
+
+    if left_index < 1:
+        left_index = 1
+    
+    right_index = (int(page) + 5)
+
+    if right_index > paginator.num_pages:
+        right_index = paginator.num_pages + 1
+
+    custom_range = range(left_index, right_index)
+
     context ={
-        'profiles': profiles
+        'profiles': profiles,
+        'search_query': search_query,
+        'custom_range': custom_range
     }
     return render(request, 'users/profiles.html', context)
 
